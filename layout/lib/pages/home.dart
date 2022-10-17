@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:layout/pages/detail.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -16,16 +18,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: Text('ความรู้เกี่ยวกับคอมพิวเตอร์'),),
       body: Padding(padding: EdgeInsets.all(20),
-      child: FutureBuilder(builder: (context, snapshot) {
-          var data = json.decode(snapshot.data.toString());
+      child: FutureBuilder(builder: (context, AsyncSnapshot snapshot) {
+          // var data = json.decode(snapshot.data.toString());
           return ListView.builder(itemBuilder: (BuildContext context, int index) {
-            return mybox(data[index]['title'], data[index]['subtitle'], data[index]['img_url'], data[index]['detail']);
+            return mybox(snapshot.data[index]['title'], snapshot.data[index]['subtitle'], snapshot.data[index]['img_url'], snapshot.data[index]['detail']);
 
           },
-          itemCount: data.length,);
+          itemCount: snapshot.data.length,);
 
         },
-        future: DefaultAssetBundle.of(context).loadString('assets/JSON/data.json'),
+        future: getData(),
+        // future: DefaultAssetBundle.of(context).loadString('assets/JSON/data.json'),
         ),),
     );
   }
@@ -71,5 +74,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
+  Future getData() async {
+    // https://raw.githubusercontent.com/dimon-ton/BasicAPI/main/data.json
+    var url = Uri.https('raw.githubusercontent.com','/dimon-ton/BasicAPI/main/data.json');
+    var response = await http.get(url);
+    var result = json.decode(response.body);
+    return result;
+  }
 }
