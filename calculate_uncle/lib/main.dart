@@ -1,105 +1,52 @@
+import 'package:calculate/pages/calc.dart';
+import 'package:calculate/pages/contact.dart';
+import 'package:calculate/pages/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
 
+// ใช้คำสั่ง stl
 class MyApp extends StatelessWidget {
   // const MyApp({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-        appBar: AppBar(title: Text("แอพคำนวณ")),
-        body: Home(),
-    ));
+    return MaterialApp(home: MainPage());
   }
 }
 
-class Home extends StatefulWidget {
-  // const Home({ Key? key }) : super(key: key);
+class MainPage extends StatefulWidget {
+  // const MainPage({ Key? key }) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _HomeState extends State<Home> {
-  // ตำแน่งสำหรับเก็บข้อมูลของค่าที่ผู้ใช้กรอกเข้ามา
-  TextEditingController quantity = TextEditingController();
-  TextEditingController price = TextEditingController();
-  // double price = 10;
-  TextEditingController result = TextEditingController();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    result.text = 'ซื้อแอปเปิ้ลจำนวน - ผล ราคาผลละ - บาท รวมลูกค้าต้องจ่ายทั้งหมด - บาท';
-  }
+class _MainPageState extends State<MainPage> {
+  int _currentIndex = 0;
+  final tabs = [HomePage(), CalculatePage(), ContactPage()];
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(35),
-          child: Center(
-              child: Column(
-            children: [
-              Image.asset(
-                'assets/apple.png',
-                width: 300,
-              ),
-              Text(
-                "โปรแกรมคำนวณ",
-                style: TextStyle(fontSize: 30),
-              ),
-              TextField(
-                  controller: price,
-                  decoration: InputDecoration(
-                      labelText: 'กรุณาใส่ราคาแอบเปิ้ล',
-                      border: OutlineInputBorder())),
-              SizedBox(
-                height: 15,
-              ),
-              TextField(
-                  controller: quantity,
-                  decoration: InputDecoration(
-                      labelText: 'กรุณาใส่จำนวนแอบเปิ้ล',
-                      border: OutlineInputBorder())),
-              SizedBox(
-                height: 15,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    var cal = double.parse(quantity.text)*double.parse(price.text);
-                    print('Apple Quantity: ${quantity.text} Total: $cal Baht');
-
-                    setState(() {
-                       result.text = 'ซื้อแอปเปิ้ลจำนวน ${quantity.text} ผล ราคาผลละ ${price.text} บาท รวมลูกค้าต้องจ่ายทั้งหมด $cal บาท';
-                    });
-
-                  },
-                  child: Text('คำนวณ'),
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xff6a2b8a)),
-                      padding: MaterialStateProperty.all(
-                          EdgeInsets.fromLTRB(50, 20, 50, 20)),
-                      textStyle:
-                          MaterialStateProperty.all(TextStyle(fontSize: 15)))),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                  result.text,
-                  style: TextStyle(fontSize: 20))
-            ],
-          )),
-        ),
-      ],
+    return Scaffold(
+      appBar: AppBar(title: Text("แอพคำนวณ")),
+      body: tabs[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex, //หน้าปัจจุบันที่เลือก
+          items: [
+            // หน้าแต่ละหน้าทีอะไรบ้าง
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "หน้าแรก"),
+            BottomNavigationBarItem(icon: Icon(Icons.calculate), label: "คำนวณ"),
+            BottomNavigationBarItem(icon: Icon(Icons.contact_mail), label: "ติดต่อเรา"),
+          ],
+          onTap: (index) {
+            setState(() {
+              print(index);
+              _currentIndex = index;
+            });
+          }),
     );
   }
 }
