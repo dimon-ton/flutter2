@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(fontFamily: 'Inspiration'),
+      theme: ThemeData(fontFamily: 'K2D'),
       home: MyHomePage(title: 'My First App'),
     );
   }
@@ -62,15 +62,19 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(child: Text('Hello, This is my first App', 
-        style: TextStyle(
-          fontSize: 50, 
-          color: Colors.red.shade900, 
-          fontFamily: 'Inspiration'
-              )
-            ),
-          ),
- // This trailing comma makes auto-formatting nicer for build methods.
+      body: Center(
+        child: Column(
+          children: [
+            Image.asset('Hello-World.png', width: 350,),
+            Text('สวัสดีชาวโลก',
+                style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.red.shade900,
+                    fontFamily: 'K2D'))
+          ],
+        ),
+      ),
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

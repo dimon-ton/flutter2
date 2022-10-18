@@ -33,14 +33,35 @@ class _HomeState extends State<Home> {
     return Center(
       child: Column(
         children: [
-          Image.asset('assets/images/pngwing.png', width: 300,),
-          Text('-------Picture--------'),
-          Text('โปรแกรมคำนวณ', style: TextStyle(fontSize: 30),),
+          Image.asset(
+            'assets/images/pngwing.png',
+            width: 300,
+          ),
+          Text('----------------------------------------------Picture----------------------------------------------'),
+          SizedBox(height: 20,),
+          Text(
+            'โปรแกรมคำนวณ',
+            style: TextStyle(fontSize: 30),
+          ),
+          SizedBox(height: 20,),
           TextField(
             decoration: InputDecoration(
-                labelText: 'จำนวนแอพเปิ้ล', 
-                border: OutlineInputBorder()),
-          )
+                labelText: 'จำนวนแอพเปิ้ล', border: OutlineInputBorder()),
+          ),
+          SizedBox(height: 15,),
+          Padding(
+              padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
+              child: ElevatedButton(
+                child: Text('คำนวณ'),
+                onPressed: () {},
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.red),
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.fromLTRB(50, 10, 50, 10)),
+                    textStyle:
+                        MaterialStateProperty.all(TextStyle(fontSize: 30))),
+              )),
+              Text('แอปเปิ้ลลูกละ 5 บาท 3 ลูก 15 บาท', style: TextStyle(fontSize: 20))
         ],
       ),
     );
