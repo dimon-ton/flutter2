@@ -27,7 +27,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   // ตำแน่งสำหรับเก็บข้อมูลของค่าที่ผู้ใช้กรอกเข้ามา
   TextEditingController quantity = TextEditingController();
-  double price = 10;
+  TextEditingController price = TextEditingController();
+  // double price = 10;
   TextEditingController result = TextEditingController();
 
   @override
@@ -35,7 +36,7 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
 
-    result.text = 'ซื้อแอปเปิ้ลจำนวน - ผล ราคาผลละ 10 บาท รวมลูกค้าต้องจ่ายทั้งหมด - บาท';
+    result.text = 'ซื้อแอปเปิ้ลจำนวน - ผล ราคาผลละ - บาท รวมลูกค้าต้องจ่ายทั้งหมด - บาท';
   }
 
   @override
@@ -56,6 +57,14 @@ class _HomeState extends State<Home> {
                 style: TextStyle(fontSize: 30),
               ),
               TextField(
+                  controller: price,
+                  decoration: InputDecoration(
+                      labelText: 'กรุณาใส่ราคาแอบเปิ้ล',
+                      border: OutlineInputBorder())),
+              SizedBox(
+                height: 15,
+              ),
+              TextField(
                   controller: quantity,
                   decoration: InputDecoration(
                       labelText: 'กรุณาใส่จำนวนแอบเปิ้ล',
@@ -65,11 +74,11 @@ class _HomeState extends State<Home> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    var cal = double.parse(quantity.text)*price;
+                    var cal = double.parse(quantity.text)*double.parse(price.text);
                     print('Apple Quantity: ${quantity.text} Total: $cal Baht');
 
                     setState(() {
-                       result.text = 'ซื้อแอปเปิ้ลจำนวน ${quantity.text} ผล ราคาผลละ 10 บาท รวมลูกค้าต้องจ่ายทั้งหมด $cal บาท';
+                       result.text = 'ซื้อแอปเปิ้ลจำนวน ${quantity.text} ผล ราคาผลละ ${price.text} บาท รวมลูกค้าต้องจ่ายทั้งหมด $cal บาท';
                     });
 
                   },
