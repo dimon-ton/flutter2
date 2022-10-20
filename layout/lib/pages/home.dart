@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:layout/pages/detail.dart';
 
@@ -9,37 +10,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> subtitle = [
-    "คอมพิวเตอร์คือ อุปกรณ์ที่ใช้สำหรับการคำนวณและทำงานอื่น ๆ",
-    "บทความนี้จะเริ่มต้นการเขียนโปรแกรม",
-    "Tools สำหรับการออกแบบ UI ของ Google"
-  ];
-  List<String> img = [
-    'https://cdn.pixabay.com/photo/2015/12/04/14/05/code-1076536_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2016/11/18/13/03/apple-1834328_960_720.jpg',
-    'https://miro.medium.com/max/1200/1*AkuZzTEw-WYMRzu8fIobOg.png'
-
-
-  ];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('ความรู้เกี่ยวกับคอมพิวเตอร์'),),
-      body: ListView(
-        padding: EdgeInsets.all(20),
-        children: [
-          mybox('คอมพิวเตอร์คืออะไร?', subtitle[0], img[1]),
-          SizedBox(height: 20,),
-          mybox('มาเขียนโปรแกรมกัน', subtitle[1], img[0]),
-          SizedBox(height: 20,),
-          mybox('Flutter คือ ?', subtitle[2], img[2]),
-        ],
-      ),
+      body: Padding(padding: EdgeInsets.all(20),
+      child: FutureBuilder(builder: (context, snapshot) {
+          var data = json.decode(snapshot.data.toString());
+          return ListView.builder(itemBuilder: (BuildContext context, int index) {
+            return mybox(data[index]['title'], data[index]['subtitle'], data[index]['img_url'], data[index]['detail']);
+
+          },
+          itemCount: data.length,);
+
+        },
+        future: DefaultAssetBundle.of(context).loadString('assets/JSON/data.json'),
+        ),),
     );
   }
 
-  Widget mybox(String title, String subtitle, String _imageurl) {
+  Widget mybox(String title, String subtitle, String _imageurl, String detail) {
+    var v1, v2, v3, v4;
+    v1 = title;
+    v2 = subtitle;
+    v3 = _imageurl;
+    v4 = detail;
     return Container(
+      margin: EdgeInsets.only(top: 20),
       decoration: BoxDecoration(
         // color: Colors.lightBlue,
         image: DecorationImage(
@@ -67,7 +65,7 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: 18,),
         TextButton(onPressed: () {
           print('next page >>>');
-          Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(v1, v2, v3, v4)));
         }, child:Text('อ่านต่อ', style: TextStyle(color: Colors.amberAccent),))
       ],),
     );

@@ -1,0 +1,28 @@
+[
+    {
+        "title":"คอมพิวเตอร์คืออะไร ?",
+        "subtitle":"คอมพิวเตอร์คือ อุปกรณ์ที่ใช้สำหรับการคำนวณและทำงานอื่น ๆ",
+        "img_url":"https://cdn.pixabay.com/photo/2015/12/04/14/05/code-1076536_960_720.jpg",
+        "detail":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores error similique laborum enim sunt fuga dolor officia. Exercitationem natus aut praesentium eum vero ullam, labore ea, eligendi sequi porro, officiis a provident voluptates enim! Facilis perferendis molestiae optio doloremque. A omnis, iusto similique exercitationem voluptate asperiores doloremque repellendus, nisi, corrupti placeat quod. Voluptate ab voluptatibus omnis quibusdam accusamus, similique eaque id cum repellendus exercitationem aperiam rerum ea vel repudiandae laborum voluptas, impedit accusantium dolore dolorem. Illum fuga cum autem molestiae numquam, reprehenderit, culpa minima, corrupti eius saepe voluptatem quasi tempora necessitatibus nobis vero rerum aliquam ab assumenda reiciendis veritatis temporibus."
+    },
+    {
+        "title":"มาเขียนโปรแกรมกัน",
+        "subtitle":"บทความนี้จะเริ่มต้นการเขียนโปรแกรม",
+        "img_url":"https://cdn.pixabay.com/photo/2016/11/18/13/03/apple-1834328_960_720.jpg",
+        "detail":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores error similique laborum enim sunt fuga dolor officia. Exercitationem natus aut praesentium eum vero ullam, labore ea, eligendi sequi porro, officiis a provident voluptates enim! Facilis perferendis molestiae optio doloremque. A omnis, iusto similique exercitationem voluptate asperiores doloremque repellendus, nisi, corrupti placeat quod. Voluptate ab voluptatibus omnis quibusdam accusamus, similique eaque id cum repellendus exercitationem aperiam rerum ea vel repudiandae laborum voluptas, impedit accusantium dolore dolorem. Illum fuga cum autem molestiae numquam, reprehenderit, culpa minima, corrupti eius saepe voluptatem quasi tempora necessitatibus nobis vero rerum aliquam ab assumenda reiciendis veritatis temporibus."
+    },
+    {
+        "title":"Flutter คือ ?",
+        "subtitle":"Tools สำหรับการออกแบบ UI ของ Google",
+        "img_url":"https://miro.medium.com/max/1200/1*AkuZzTEw-WYMRzu8fIobOg.png",
+        "detail":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores error similique laborum enim sunt fuga dolor officia. Exercitationem natus aut praesentium eum vero ullam, labore ea, eligendi sequi porro, officiis a provident voluptates enim! Facilis perferendis molestiae optio doloremque. A omnis, iusto similique exercitationem voluptate asperiores doloremque repellendus, nisi, corrupti placeat quod. Voluptate ab voluptatibus omnis quibusdam accusamus, similique eaque id cum repellendus exercitationem aperiam rerum ea vel repudiandae laborum voluptas, impedit accusantium dolore dolorem. Illum fuga cum autem molestiae numquam, reprehenderit, culpa minima, corrupti eius saepe voluptatem quasi tempora necessitatibus nobis vero rerum aliquam ab assumenda reiciendis veritatis temporibus."
+    },
+    {
+        "title":"Python คือ ?",
+        "subtitle":"ภาาษาเขียนโปรแกรมชนิดหนึ่งสร้างขึ้นเมื่อ 1992",
+        "img_url":"https://miro.medium.com/max/1200/1*AkuZzTEw-WYMRzu8fIobOg.png",
+        "detail":"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores error similique laborum enim sunt fuga dolor officia. Exercitationem natus aut praesentium eum vero ullam, labore ea, eligendi sequi porro, officiis a provident voluptates enim! Facilis perferendis molestiae optio doloremque. A omnis, iusto similique exercitationem voluptate asperiores doloremque repellendus, nisi, corrupti placeat quod. Voluptate ab voluptatibus omnis quibusdam accusamus, similique eaque id cum repellendus exercitationem aperiam rerum ea vel repudiandae laborum voluptas, impedit accusantium dolore dolorem. Illum fuga cum autem molestiae numquam, reprehenderit, culpa minima, corrupti eius saepe voluptatem quasi tempora necessitatibus nobis vero rerum aliquam ab assumenda reiciendis veritatis temporibus."
+    }
+
+]
+
