@@ -53,16 +53,16 @@ class _HomePageState extends State<HomePage> {
           spreadRadius: 0,
         )]
       ),
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.fromLTRB(15, 10, 15, 0),
       // color: Colors.lightBlue,
-      height: 150,
+      height: 160,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
         Text(title, style: TextStyle(fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),),
         Text(subtitle, style: TextStyle(fontSize: 15, color: Colors.white),),
-        SizedBox(height: 18,),
+        SizedBox(height: 10,),
         TextButton(onPressed: () {
           print('next page >>>');
           Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(v1, v2, v3, v4)));
