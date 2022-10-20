@@ -47,7 +47,13 @@ class _HomePageState extends State<HomePage> {
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.50), BlendMode.darken)
         ),
-        borderRadius: BorderRadius.circular(20)
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [BoxShadow(
+          color: Color.fromRGBO(0, 0, 0, 0.5),
+          offset: Offset(6, 6),
+          blurRadius: 3,
+          spreadRadius: 0,
+        )]
       ),
       padding: EdgeInsets.all(20),
       // color: Colors.lightBlue,
