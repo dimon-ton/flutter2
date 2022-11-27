@@ -10,19 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-<<<<<<< HEAD
       theme: ThemeData(fontFamily: 'K2D'),
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-      theme: ThemeData(fontFamily: 'K2D'),
-=======
-      theme: ThemeData(fontFamily: 'Inspiration'),
->>>>>>> 4352be7 (my first app)
-=======
-      theme: ThemeData(fontFamily: 'Inspiration'),
->>>>>>> 4352be7 (my first app)
->>>>>>> 43f4c58 (commit for change branch)
       home: MyHomePage(title: 'My First App'),
     );
   }
@@ -74,11 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 43f4c58 (commit for change branch)
       body: Center(
         child: Column(
           children: [
@@ -92,25 +75,17 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
-<<<<<<< HEAD
-=======
-=======
-=======
->>>>>>> 4352be7 (my first app)
-      body: Center(child: Text('Hello, This is my first App', 
-        style: TextStyle(
-          fontSize: 50, 
-          color: Colors.red.shade900, 
-          fontFamily: 'Inspiration'
-              )
-            ),
-          ),
+
+      // body: Center(child: Text('Hello, This is my first App', 
+      //   style: TextStyle(
+      //     fontSize: 50, 
+      //     color: Colors.red.shade900, 
+      //     fontFamily: 'Inspiration'
+      //         )
+      //       ),
+      //     ),
  // This trailing comma makes auto-formatting nicer for build methods.
-<<<<<<< HEAD
->>>>>>> 4352be7 (my first app)
-=======
->>>>>>> 4352be7 (my first app)
->>>>>>> 43f4c58 (commit for change branch)
+
     );
   }
 }

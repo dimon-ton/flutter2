@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:layout/pages/about.dart';
 import 'package:layout/pages/calculate.dart';
-import 'package:layout/pages/detail.dart';
 import 'package:layout/pages/home.dart';
 
 void main() {

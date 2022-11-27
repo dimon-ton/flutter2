@@ -45,27 +45,12 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-<<<<<<< HEAD
+
   assets:
-    - assets/Hello-World.png
+     - assets/Hello-World.png
     # - images/a_dot_ham.jpeg
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-  assets:
-    - assets/Hello-World.png
-    # - images/a_dot_ham.jpeg
-=======
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
->>>>>>> 4352be7 (my first app)
-=======
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
->>>>>>> 4352be7 (my first app)
->>>>>>> 43f4c58 (commit for change branch)
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -81,11 +66,8 @@ flutter:
   fonts:
     - family: Inspiration
       fonts:
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 43f4c58 (commit for change branch)
+
+
         - asset: fonts/Inspiration-Regular.ttf
           weight: 900
 
@@ -95,19 +77,14 @@ flutter:
           weight: 900
 
 
-<<<<<<< HEAD
-=======
-=======
         - asset: fonts\Inspiration-Regular.ttf
           weight: 900
 
->>>>>>> 4352be7 (my first app)
-=======
+
         - asset: fonts\Inspiration-Regular.ttf
           weight: 900
 
->>>>>>> 4352be7 (my first app)
->>>>>>> 43f4c58 (commit for change branch)
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
