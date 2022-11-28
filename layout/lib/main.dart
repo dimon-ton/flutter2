@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:layout/pages/about.dart';
+import 'package:layout/pages/add.dart';
 import 'package:layout/pages/calculate.dart';
 import 'package:layout/pages/home.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Computer Knowledge",
-      home: Main(),
+      home: AddPage(),
     );
   }
 }
