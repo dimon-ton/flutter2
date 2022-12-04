@@ -4,22 +4,47 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
-class AddPage extends StatefulWidget {
-  const AddPage({Key? key}) : super(key: key);
+class UpdatePage extends StatefulWidget {
+  final v1, v2, v3;
+  const UpdatePage(this.v1, this.v2, this.v3);
 
   @override
-  State<AddPage> createState() => _AddPageState();
+  State<UpdatePage> createState() => _UpdatePageState();
 }
 
-class _AddPageState extends State<AddPage> {
-  // announce variable
+class _UpdatePageState extends State<UpdatePage> {
+  var _v1, _v2, _v3;
+
+    // announce variable
   TextEditingController todo_title = TextEditingController();
   TextEditingController todo_detail = TextEditingController();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _v1 = widget.v1; //id
+    _v2 = widget.v2; //title
+    _v3 = widget.v3; //detail
+
+    todo_title.text = _v2;
+    todo_detail.text = _v3;
+  }
+
+
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('เพิ่มรายการใหม่')),
+      appBar: AppBar(
+        title: Text('แก้ไข'),
+        actions: [
+          IconButton(onPressed: (() {
+            print("delete ID: $_v1");
+          }), icon: Icon(Icons.delete, color: Colors.red,))
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: ListView(
@@ -46,7 +71,7 @@ class _AddPageState extends State<AddPage> {
             Padding(
               padding: const EdgeInsets.all(20),
               child: ElevatedButton(
-                    child: Text('เพิ่มรายการ'),
+                    child: Text('แก้ไข'),
                     onPressed: () {
                       print('-----------------------');
                       print('title: ${todo_title.text}');
