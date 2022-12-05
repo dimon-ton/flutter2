@@ -59,6 +59,8 @@ class _AddPageState extends State<AddPage> {
                         todo_detail.clear();
                       });
 
+                      
+
                     },
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(Colors.blue),
@@ -76,7 +78,7 @@ class _AddPageState extends State<AddPage> {
 
   // edit androidManifest.xml by input <uses-permission android:name="android.permission.INTERNET"/>
   Future postTodo() async {
-    var url = Uri.https('192.168.66.1:8000/','/api/post-todolist');
+    var url = Uri.http('192.168.1.93:8000','/api/post-todolist');
     //  var url = Uri.http('192.168.1.89:8000','/api/post-todolist');
     Map<String, String> header = {"Content-type":"application/json"};
     String jsondata = '{"title":"${todo_title.text}", "detail":"${todo_detail.text}"}';

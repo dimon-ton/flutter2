@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 // http method request
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -27,6 +28,7 @@ class _UpdatePageState extends State<UpdatePage> {
     _v2 = widget.v2; //title
     _v3 = widget.v3; //detail
 
+  
     todo_title.text = _v2;
     todo_detail.text = _v3;
   }
@@ -42,6 +44,9 @@ class _UpdatePageState extends State<UpdatePage> {
         actions: [
           IconButton(onPressed: (() {
             print("delete ID: $_v1");
+            deleteTodo();
+            Navigator.pop(context, 'delete');
+
           }), icon: Icon(Icons.delete, color: Colors.red,))
         ],
       ),
@@ -77,12 +82,8 @@ class _UpdatePageState extends State<UpdatePage> {
                       print('title: ${todo_title.text}');
                       print('detail: ${todo_detail.text}');
 
-                      postTodo();
-
-                      setState(() {
-                        todo_title.clear();
-                        todo_detail.clear();
-                      });
+                      updateTodo();
+                      Navigator.pop(context, 'edited');
 
                     },
                     style: ButtonStyle(
@@ -100,12 +101,21 @@ class _UpdatePageState extends State<UpdatePage> {
   }
 
   // edit androidManifest.xml by input <uses-permission android:name="android.permission.INTERNET"/>
-  Future postTodo() async {
-    var url = Uri.https('192.168.66.1:8000/','/api/post-todolist');
+  Future updateTodo() async {
+    var url = Uri.http('192.168.1.93:8000','/api/update-todolist/$_v1');
     //  var url = Uri.http('192.168.1.89:8000','/api/post-todolist');
     Map<String, String> header = {"Content-type":"application/json"};
     String jsondata = '{"title":"${todo_title.text}", "detail":"${todo_detail.text}"}';
-    var response = await http.post(url, headers: header, body: jsondata);
+    var response = await http.put(url, headers: header, body: jsondata);
+    print('------------------resutl------------------------');
+    print(response.body);
+  }
+
+  Future deleteTodo() async {
+    var url = Uri.http('192.168.1.93:8000','/api/delete-todolist/$_v1');
+    //  var url = Uri.http('192.168.1.89:8000','/api/post-todolist');
+    Map<String, String> header = {"Content-type":"application/json"};
+   var response = await http.delete(url, headers: header);
     print('------------------resutl------------------------');
     print(response.body);
   }
