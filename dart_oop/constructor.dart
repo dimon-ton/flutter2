@@ -5,23 +5,23 @@ class Uncle {
   double? money;
   bool isSingle = true;
 
-
   void learn() {
     print("I'm learning dart language.");
   }
 
-  Uncle ({required this.fullname, this.job, required this.age, this.money, required this.isSingle}) {
+  Uncle(
+      {required this.fullname,
+      this.job,
+      required this.age,
+      this.money,
+      required this.isSingle}) {
     this.fullname = fullname;
     this.job = job;
     this.age = age;
     this.money = money;
     this.isSingle = isSingle;
   }
-
 }
-
-
-
 
 // กำหนดค่าในรอบเดียวจบ
 void main() {
@@ -41,6 +41,4 @@ void main() {
   print(uncle03.isSingle);
 
   uncle03.learn();
-
-  
 }
