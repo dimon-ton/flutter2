@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop/product.dart';
 import 'package:shop/sqlitedb.dart';
+import 'package:shop/updatepage.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -125,13 +126,25 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             IconButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  bool upated = await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => UpdatePage(
+                                              editProduct: pdList[index])));
+                                  if (upated == true) {
+                                    _refreshList();
+                                  }
+                                },
                                 icon: Icon(
                                   Icons.edit,
                                   color: Colors.blue,
                                 )),
                             IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  dbHelper.deleteProduct(pdID);
+                                  _refreshList();
+                                },
                                 icon: Icon(
                                   Icons.delete,
                                   color: Colors.red,
