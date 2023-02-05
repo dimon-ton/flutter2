@@ -6,6 +6,11 @@ from rest_framework import status
 from .serializers import TodolistSerializers
 from .models import Todolist
 
+# authentication
+from django.contrib.auth.models import User
+from .models import Todolist, Profile
+from uuid import uuid1
+
 # Create your views here.
 
 # Get data
@@ -55,6 +60,45 @@ def delete_todolist(req, TID):
         return Response(data=data, status=statuscode)
 
 
+# USER
+@api_view(['POST'])
+def register_newuser(req):
+    if req.method == 'POST':
+        data = req.POST.copy()
+        username = data.get('username')
+        password = data.get('password')
+        fname = data.get('first_name')
+        lname = data.get('last_name')
+        tel = data.get('mobile')
+
+
+        if username == '' and password == '':
+            dt = {'status':'username and password required'}
+            return Response(data=dt, status=status.HTTP_400_BAD_REQUEST)
+
+        check = User.objects.filter(username=username)
+        if len(check) == 0:
+            newuser = User()
+            newuser.username = username
+            newuser.set_password(password) # function that encrypt the password
+            newuser.first_name = fname
+            newuser.last_name = lname
+            newuser.save()
+
+            newprofile = Profile()
+            newprofile.user = User.objects.get(username=username)
+            newprofile.tel = tel
+
+            gentoken = uuid1().hex
+            newprofile.token = gentoken
+            newprofile.save()
+
+
+            dt = {'status':'user-created', 'username': username, 'first_name': fname, 'last_name': lname,'token': gentoken}
+            return Response(data=dt, status=status.HTTP_201_CREATED)
+        else:
+            dt = {'status':'user-exist'}
+            return Response(data=dt, status=status.HTTP_400_BAD_REQUEST)
 
 
 data = [
