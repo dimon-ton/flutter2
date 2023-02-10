@@ -64,12 +64,27 @@ def delete_todolist(req, TID):
 @api_view(['POST'])
 def register_newuser(req):
     if req.method == 'POST':
-        data = req.POST.copy()
+        print(req.body)
+        print(req.data)
+
+        # ใชักับ web
+        # data = req.POST.copy()
+
+
+        # ใช้กับ flutter
+        data = req.data
+
+        # data = json.loads(req.body.decode('utf-8'))
+        # data = json.loads(data)
+        
+
         username = data.get('username')
         password = data.get('password')
         fname = data.get('first_name')
         lname = data.get('last_name')
         tel = data.get('mobile')
+
+        
 
 
         if username == '' and password == '':

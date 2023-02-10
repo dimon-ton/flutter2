@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/pages/add.dart';
 import 'package:todolist/pages/login.dart';
 import 'package:todolist/pages/register.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Todolist",
-      home: Register(),
+      home: LoginPage(),
     );
   }
 }

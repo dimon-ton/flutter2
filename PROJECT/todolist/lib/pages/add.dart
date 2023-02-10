@@ -54,8 +54,8 @@ class _AddPageState extends State<AddPage> {
                   print('title: ${todo_title.text}');
                   print('detail: ${todo_detail.text}');
 
-                  // postTodo();
-                  addTodoSQL();
+                  postTodo();
+                  // addTodoSQL();
 
                   setState(() {
                     todo_title.clear();
@@ -84,8 +84,8 @@ class _AddPageState extends State<AddPage> {
 
   // edit androidManifest.xml by input <uses-permission android:name="android.permission.INTERNET"/>
   Future postTodo() async {
-    // var url = Uri.http('192.168.66.1:8000','/api/post-todolist');
-    var url = Uri.https('chang-pimon.online', '/api/post-todolist');
+    var url = Uri.http('192.168.1.100:8000', '/api/post-todolist');
+    // var url = Uri.https('chang-pimon.online', '/api/post-todolist');
     Map<String, String> header = {"Content-type": "application/json"};
     String jsondata =
         '{"title":"${todo_title.text}", "detail":"${todo_detail.text}"}';

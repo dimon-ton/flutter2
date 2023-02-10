@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:todolist/pages/register.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -68,8 +69,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  // Navigator.push(context,
-                  // MaterialPageRoute(builder: (context) => ViewPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Register()));
                 },
                 child: Text('Register')),
             SizedBox(

@@ -1,4 +1,6 @@
-import 'dart:html';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 
@@ -14,7 +16,9 @@ class _RegisterState extends State<Register> {
   var password = TextEditingController();
   var name = TextEditingController();
   var lastname = TextEditingController();
-  var tel_number = TextEditingController();
+  var tel = TextEditingController();
+
+  String result = '-----------------------result-----------------------';
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class _RegisterState extends State<Register> {
         child: ListView(
           children: [
             Center(
-              child: const Text(
+              child: Text(
                 'register page',
                 style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
               ),
@@ -72,14 +76,64 @@ class _RegisterState extends State<Register> {
               height: 30,
             ),
             TextField(
-              controller: tel_number,
+              controller: tel,
               decoration: InputDecoration(
                   hintText: 'กรุณากรอกเบอร์โทรศัพท์',
                   border: OutlineInputBorder()),
-            )
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  postToRegister();
+
+                  // setState(() {
+                  //   user.clear();
+                  //   password.clear();
+                  //   name.clear();
+                  //   lastname.clear();
+                  //   tel_number.clear();
+                  // });
+                },
+                child: Center(child: Text('Register'))),
+            SizedBox(
+              height: 30,
+            ),
+            Center(child: Text('${result}'))
           ],
         ),
       ),
     );
+  }
+
+  Future postToRegister() async {
+    var url = Uri.http('192.168.1.100:8000', '/api/newuser');
+    Map<String, String> header = {"Content-type": "application/json"};
+
+    String v1 = '"username":"${user.text}"';
+    String v2 = '"password":"${password.text}"';
+    String v3 = '"first_name":"${name.text}"';
+    String v4 = '"last_name":"${lastname.text}"';
+    String v5 = '"mobile":"${tel.text}"';
+
+    String jsondata = '{$v1,$v2,$v3,$v4,$v5}';
+
+    var response = await http.post(url, headers: header, body: jsondata);
+
+    print('---------------------result-----------------------');
+    print(response.body);
+
+    var byte_result = utf8.decode(response.bodyBytes);
+    print(byte_result);
+
+    setState(() {
+      var result_json = jsonDecode(byte_result);
+      String setresult =
+          'ยินดีด้วย คุณ${result_json['first_name']} ${result_json['last_name']} คุณได้สมัครสมาชิกเรียบร้อยแล้ว';
+
+      result = setresult;
+    });
   }
 }
