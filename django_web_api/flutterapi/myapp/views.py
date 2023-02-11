@@ -11,6 +11,9 @@ from django.contrib.auth.models import User
 from .models import Todolist, Profile
 from uuid import uuid1
 
+# authenticate app flutter
+from django.contrib.auth import authenticate, login
+
 # Create your views here.
 
 # Get data
@@ -113,6 +116,27 @@ def register_newuser(req):
             return Response(data=dt, status=status.HTTP_201_CREATED)
         else:
             dt = {'status':'user-exist'}
+            return Response(data=dt, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def authenticate_app(req):
+    if req.method == 'POST':
+        data = req.data
+        username = data.get('username')
+        password = data.get('password')
+
+        try:
+            user = authenticate(username=username, password=password)
+            login(req, user)
+
+            getuser = User.objects.get(username=username)
+
+            dt = {'status':'login-success', 'username': username, 'first_name': getuser.first_name, 'last_name': getuser.last_name,'token': getuser.profile.token}
+
+            return Response(data=dt, status=status.HTTP_200_OK)
+
+        except:
+            dt = {'status':'login-failed'}
             return Response(data=dt, status=status.HTTP_400_BAD_REQUEST)
 
 

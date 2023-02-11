@@ -4,6 +4,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
 
@@ -109,7 +111,7 @@ class _RegisterState extends State<Register> {
   }
 
   Future postToRegister() async {
-    var url = Uri.http('192.168.1.100:8000', '/api/newuser');
+    var url = Uri.http('192.168.1.88:8000', '/api/newuser');
     Map<String, String> header = {"Content-type": "application/json"};
 
     String v1 = '"username":"${user.text}"';
@@ -130,10 +132,27 @@ class _RegisterState extends State<Register> {
 
     setState(() {
       var result_json = jsonDecode(byte_result);
-      String setresult =
-          'ยินดีด้วย คุณ${result_json['first_name']} ${result_json['last_name']} คุณได้สมัครสมาชิกเรียบร้อยแล้ว';
 
-      result = setresult;
+      String token = result_json['token'];
+      setToken(token);
+
+      String status = result_json['status'];
+
+      if (status == 'user-created') {
+        String setresult =
+            'ยินดีด้วย คุณ${result_json['first_name']} ${result_json['last_name']} คุณได้สมัครสมาชิกเรียบร้อยแล้ว';
+
+        result = setresult;
+      } else if (status == 'user-exist') {
+        result = 'มี user ในระบบแล้ว';
+      } else {
+        result = 'ข้อมูลไม่ถูกต้อง กรุณาตรวจสอบ';
+      }
     });
+  }
+
+  Future<void> setToken(token) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('token', token);
   }
 }

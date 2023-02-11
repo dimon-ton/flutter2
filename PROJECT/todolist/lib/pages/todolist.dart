@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todolist/pages/add.dart';
 
 import 'package:http/http.dart' as http;
@@ -20,6 +19,7 @@ class TodoList extends StatefulWidget {
 
 class _TodoListState extends State<TodoList> {
   List todolistitem = [];
+  String msg = '';
 
   // SQL
   List<Todo> todoList = [];
@@ -36,9 +36,10 @@ class _TodoListState extends State<TodoList> {
   @override
   void initState() {
     super.initState();
-    // getTodolist();
-    readTodoSQL();
-    readTodo.status = false;
+    getTodolist();
+    // readTodoSQL();
+    // readTodo.status = false;
+    check(); // check if the username existed.
   }
 
   @override
@@ -50,8 +51,8 @@ class _TodoListState extends State<TodoList> {
                   context, MaterialPageRoute(builder: (context) => AddPage()))
               .then((value) {
             setState(() {
-              // getTodolist();
-              readTodoSQL();
+              getTodolist();
+              // readTodoSQL();
             });
           });
         },
@@ -72,7 +73,7 @@ class _TodoListState extends State<TodoList> {
         ],
         title: Text('All Todolist'),
       ),
-      body: todoListCreateSQL(),
+      body: todolistCreate(),
     );
   }
 
@@ -183,5 +184,21 @@ class _TodoListState extends State<TodoList> {
     setState(() {
       todolistitem = jsonDecode(result);
     });
+  }
+
+  void getFullname() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    var first_name = pref.getString('first_name');
+    var last_name = pref.getString('last_name');
+    msg = 'สวัสดีคุณ ${first_name} ${last_name}';
+  }
+
+  void check() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final checkvalue = pref.get('first_name') ?? 0;
+
+    if (checkvalue != 0) {
+      getFullname();
+    }
   }
 }
