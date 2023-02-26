@@ -125,9 +125,13 @@ def authenticate_app(req):
         username = data.get('username')
         password = data.get('password')
 
+
         try:
             user = authenticate(username=username, password=password)
+            print('user: ', user)
             login(req, user)
+            
+            
 
             getuser = User.objects.get(username=username)
 

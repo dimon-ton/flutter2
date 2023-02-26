@@ -1,8 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todolist/pages/register.dart';
 
@@ -99,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future login() async {
-    var url = Uri.http('192.168.1.88:8000', '/api/authenticate');
+    var url = Uri.http('192.168.1.97:8000', '/api/authenticate');
     Map<String, String> header = {"Content-type": "application/json"};
 
     String v1 = '"username":"${username.text}"';
@@ -118,20 +114,22 @@ class _LoginPageState extends State<LoginPage> {
     var result_json = jsonDecode(byte_result);
     String status = result_json['status'];
 
-    if (status == 'login-success') {
-      String username = result_json['username'];
-      String token = result_json['token'];
-      setToken(token);
-      setUserInfo(result_json['first_name'], result_json['last_name'],
-          result_json['username']);
+    setState(() {
+      if (status == 'login-success') {
+        String username = result_json['username'];
+        String token = result_json['token'];
+        setToken(token);
+        setUserInfo(result_json['first_name'], result_json['last_name'],
+            result_json['username']);
 
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) => TodoList()));
-    } else if (status == 'login-failed') {
-      result = 'เข้าสู่ระบบไม่สำเร็จ';
-    } else {
-      result = 'กรุณากรอกอีกครั้ง';
-    }
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => TodoList()));
+      } else if (status == 'login-failed') {
+        result = 'เข้าสู่ระบบไม่สำเร็จ';
+      } else {
+        result = 'กรุณากรอกอีกครั้ง';
+      }
+    });
   }
 
   Future<void> setToken(token) async {

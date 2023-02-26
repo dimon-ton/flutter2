@@ -48,8 +48,8 @@ class _UpdatePageState extends State<UpdatePage> {
               onPressed: (() {
                 print("delete ID: $_v1");
 
-                // deleteTodo();
-                deleteTodoSQL();
+                deleteTodo();
+                // deleteTodoSQL();
 
                 Navigator.pop(context, 'delete');
               }),
@@ -123,7 +123,7 @@ class _UpdatePageState extends State<UpdatePage> {
 
   // edit androidManifest.xml by input <uses-permission android:name="android.permission.INTERNET"/>
   Future updateTodo() async {
-    var url = Uri.https('chang-pimon.online', '/api/update-todolist/$_v1');
+    var url = Uri.https('192.168.1.97:8000', '/api/update-todolist/$_v1');
     //  var url = Uri.http('192.168.1.89:8000','/api/post-todolist');
     Map<String, String> header = {"Content-type": "application/json"};
     String jsondata =
@@ -134,7 +134,7 @@ class _UpdatePageState extends State<UpdatePage> {
   }
 
   Future deleteTodo() async {
-    var url = Uri.https('chang-pimon.online', '/api/delete-todolist/$_v1');
+    var url = Uri.http('192.168.1.97:8000', '/api/delete-todolist/$_v1');
     //  var url = Uri.http('192.168.1.89:8000','/api/post-todolist');
     Map<String, String> header = {"Content-type": "application/json"};
     var response = await http.delete(url, headers: header);

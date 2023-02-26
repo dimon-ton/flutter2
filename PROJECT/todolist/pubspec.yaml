@@ -32,9 +32,11 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.3
-  flutter_launcher_icons: ^0.9.1
+  flutter_launcher_icons: ^0.9.1 # 512 x 512 pixel
   sqflite: ^2.0.2
   shared_preferences: ^2.0.10
+  url_launcher: ^6.0.5
+  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -44,6 +46,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  change_app_package_name: ^1.0.0
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -51,6 +55,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
